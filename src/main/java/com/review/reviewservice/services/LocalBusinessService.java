@@ -51,4 +51,16 @@ public class LocalBusinessService {
         }
         localBusinessRepository.delete(localBusinessOptional.get());
     }
+
+    public ServiceDTO getServiceById(Long Id) {
+        Optional<LocalBusiness> localBusinessOptional = localBusinessRepository.findById(Id);
+        if(localBusinessOptional.isEmpty())
+            return null;
+        else{
+            LocalBusiness s = localBusinessOptional.get();
+            return new ServiceDTO(s.getService_name(),s.getService_type(),s.getCity());
+        }
+
+
+    }
 }
