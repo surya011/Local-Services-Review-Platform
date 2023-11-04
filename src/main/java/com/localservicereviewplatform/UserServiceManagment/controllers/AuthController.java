@@ -28,12 +28,13 @@ public class AuthController {
 
     @PostMapping("/loginUser")
     public ResponseEntity<UserDto> loginUser(@RequestBody LoginRequestDto loginRequestDto){
-        return null;
+      return  userService.loginUser(loginRequestDto);
     }
 
     @PostMapping("/logoutUser")
-    public ResponseEntity<Void>logoutUser(@RequestBody LogoutRequestDto logoutRequestDto ){
-        return null;
+    public ResponseEntity<Void>logoutUser(@RequestParam(value = "id") Long userid ,
+                                          @RequestBody LogoutRequestDto logoutRequestDto){
+         return userService.logoutUser(logoutRequestDto.getSessionId() , userid );
     }
 
     @DeleteMapping("/deleteUser")
